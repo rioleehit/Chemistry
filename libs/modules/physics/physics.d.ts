@@ -1,7 +1,6 @@
-
 //////////////////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2014-2015, Egret Technology Inc.
+//  Copyright (c) 2014-present, Egret Technology.
 //  All rights reserved.
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
@@ -206,6 +205,7 @@ declare module p2 {
             localOffsetB?: number[];
             localAngleB?: number;
             maxForce?: number;
+            collideConnected?: boolean;
         });
 
         localAngleB: number;
@@ -226,6 +226,7 @@ declare module p2 {
             disableRotationalLock?: boolean;
             upperLimit?: number;
             lowerLimit?: number;
+            collideConnected?: boolean;
         });
 
         localAnchorA: number[];
@@ -253,6 +254,7 @@ declare module p2 {
             localPivotA?: number[];
             localPivotB?: number[];
             maxForce?: number;
+            collideConnected?: boolean;
         });
 
         angle: number;

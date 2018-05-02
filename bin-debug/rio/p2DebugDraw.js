@@ -1,3 +1,6 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
 var p2DebugDraw = (function () {
     function p2DebugDraw(world, sprite) {
         this.COLOR_D_SLEEP = 0x999999;
@@ -17,8 +20,7 @@ var p2DebugDraw = (function () {
         ctx = canvas.getContext("2d");
         ctx.lineWidth = 1 / zoom;
     }
-    var d = __define,c=p2DebugDraw,p=c.prototype;
-    p.drawDebug = function () {
+    p2DebugDraw.prototype.drawDebug = function () {
         this.sprite.graphics.clear();
         var l = this.world.bodies.length;
         for (var i = 0; i < l; i++) {
@@ -64,26 +66,32 @@ var p2DebugDraw = (function () {
             }
         }
     };
-    p.drawShape = function (shape, body, color, fillColor) {
+    p2DebugDraw.prototype.drawShape = function (shape, body, color, fillColor) {
         var color = color == undefined ? this.getColor(body) : color;
         var fillColor = fillColor == undefined ? true : fillColor;
         if (shape instanceof p2.Convex) {
             this.drawConvexShape(shape, body, color, fillColor);
         }
         else if (shape instanceof p2.Plane) {
+            //this.drawPlaneShape(<p2.Plane>shape, body, color, fillColor);
         }
         else if (shape instanceof p2.Circle) {
+            //this.drawCircleShape(<p2.Circle>shape, body, color, fillColor);
         }
         else if (shape instanceof p2.Capsule) {
+            //this.drawCapsule(<p2.Capsule>shape, body,color);
         }
         else if (shape instanceof p2.Particle) {
+            //this.drawParticle(<p2.Particle>shape, body,color);
         }
         else if (shape instanceof p2.Line) {
+            // this.drawLine(<p2.Line>shape, body,color);
         }
         else if (shape instanceof p2.Heightfield) {
+            //this.drawHeightfeild(<p2.Heightfield>shape, body,color);
         }
     };
-    p.drawConvexShape = function (shape, b, color, fillColor) {
+    p2DebugDraw.prototype.drawConvexShape = function (shape, b, color, fillColor) {
         ctx.beginPath();
         var x = body.interpolatedPosition[0], y = body.interpolatedPosition[1], s = body.shapes[0];
         ctx.save();
@@ -111,4 +119,5 @@ var p2DebugDraw = (function () {
     };
     return p2DebugDraw;
 }());
-egret.registerClass(p2DebugDraw,'p2DebugDraw');
+__reflect(p2DebugDraw.prototype, "p2DebugDraw");
+//# sourceMappingURL=p2DebugDraw.js.map

@@ -1,3 +1,16 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 /**
  *
  * @author
@@ -6,17 +19,17 @@
 var SpritePhysic = (function (_super) {
     __extends(SpritePhysic, _super);
     function SpritePhysic(options) {
-        _super.call(this, options);
-        this.img = new egret.Sprite();
-        this.img["update"] = function () { };
+        var _this = _super.call(this, options) || this;
+        _this.img = new egret.Sprite();
+        _this.img["update"] = function () { };
         if (options && options.onInit) {
-            options.onInit.call(this);
+            options.onInit.call(_this);
         }
-        this.img.addEventListener(egret.Event.ADDED_TO_STAGE, this.active, this);
-        this.img.addEventListener(egret.Event.REMOVED_FROM_STAGE, this.unactive, this);
+        _this.img.addEventListener(egret.Event.ADDED_TO_STAGE, _this.active, _this);
+        _this.img.addEventListener(egret.Event.REMOVED_FROM_STAGE, _this.unactive, _this);
+        return _this;
     }
-    var d = __define,c=SpritePhysic,p=c.prototype;
-    p.update = function () {
+    SpritePhysic.prototype.update = function () {
         this.img.x = (this.position[0] * SpritePhysic.factor);
         this.img.y = (SpritePhysic.stageHeight - this.position[1] * SpritePhysic.factor);
         //        this.img.rotation = 360 - this.angle * 180 / Math.PI;
@@ -24,33 +37,34 @@ var SpritePhysic = (function (_super) {
         //            this.img["update"](this);
         //        }
     };
-    p.active = function () {
+    SpritePhysic.prototype.active = function () {
         if (this.img) {
             this.img.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onChosen, this);
             this.img.addEventListener(egret.TouchEvent.TOUCH_MOVE, this._onChosen, this);
         }
     };
-    p.unactive = function () {
+    SpritePhysic.prototype.unactive = function () {
         if (this.img) {
             this.img.removeEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onChosen, this);
             this.img.addEventListener(egret.TouchEvent.TOUCH_MOVE, this._onChosen, this);
         }
     };
-    p._onChosen = function (evt) {
+    SpritePhysic.prototype._onChosen = function (evt) {
         if (this.chosenTag == false) {
             this.onChosen(this);
         }
     };
-    p.createBitmapByName = function (name) {
+    SpritePhysic.prototype.createBitmapByName = function (name) {
         var result = new egret.Bitmap();
         var texture = RES.getRes(name);
         result.texture = texture;
         result.touchEnabled = true;
         return result;
     };
-    p.getPos = function () { return { x: this.img.x, y: this.img.y }; };
-    p.getDisplayObject = function () { return this.img || this.shapImg; };
+    SpritePhysic.prototype.getPos = function () { return { x: this.img.x, y: this.img.y }; };
+    SpritePhysic.prototype.getDisplayObject = function () { return this.img || this.shapImg; };
     SpritePhysic.maxId = 0;
     return SpritePhysic;
 }(p2.Body));
-egret.registerClass(SpritePhysic,'SpritePhysic');
+__reflect(SpritePhysic.prototype, "SpritePhysic");
+//# sourceMappingURL=SpritePhysic.js.map

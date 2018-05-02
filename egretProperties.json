@@ -8,7 +8,7 @@
 		"native": 1,
 		"path": "bin-release"
 	},
-	"egret_version": "3.0.8",
+	"egret_version": "5.0.14",
 	"modules": [
 		{
 			"name": "egret"
@@ -21,7 +21,11 @@
 		},
 		{
 			"name": "physics",
-			"path": "../egretGameLibrary/physics/libsrc/"
+			"path": "../egret-game-library/physics/libsrc/"
+		},
+		{
+			"name": "promise",
+			"path": "./promise"
 		}
 	]
 }

@@ -56,9 +56,9 @@ class GameLayer extends eui.UILayer {
 	private initDebugDraw(){
         var sprite = new egret.Sprite();
         this.addChild(sprite);
-        this.p2Draw = new p2DebugDraw(this.logic.getWorld(),sprite);
-        this.p2Draw.factor = SpritePhysic.factor;
-        this.p2Draw.winHeight = SpritePhysic.stageHeight;
+        // this.p2Draw = new p2DebugDraw(this.logic.getWorld(),sprite);
+        // this.p2Draw.factor = SpritePhysic.factor;
+        // this.p2Draw.winHeight = SpritePhysic.stageHeight;
 	}
     private gameStart(){
         if(this.stateGame!="ending"){
@@ -169,15 +169,15 @@ class GameLayer extends eui.UILayer {
         logic.init();
     }
     private debugDraw(){
-        if(this.p2Draw) {
+        //if(this.p2Draw) {
             //this.p2Draw.drawDebug();
-        }
+        //}
     }
     private preIniter:number;
     private balls: Ball[];
     private logic: GameLogic;
     private stateGame: string;//playing pausing ending
     private stageInfo: StageInfo;
-    private p2Draw: p2DebugDraw;
+    //private p2Draw: p2DebugDraw;
     private ballTimer: egret.Timer;
 }

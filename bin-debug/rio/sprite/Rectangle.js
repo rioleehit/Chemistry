@@ -26,3 +26,4 @@
 //	}
 //	
 //}
+//# sourceMappingURL=Rectangle.js.map

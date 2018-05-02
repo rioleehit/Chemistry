@@ -1,3 +1,6 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
 /**
  *
  * @author
@@ -17,20 +20,19 @@ var GameLogic = (function () {
         this.initGround();
         //this.init();        
     }
-    var d = __define,c=GameLogic,p=c.prototype;
-    p.init = function () {
+    GameLogic.prototype.init = function () {
         this.atoms = new Array();
         this.atomChosen = new Array();
         this.chosenCount = 0;
         this.isPause = false;
     };
-    p.add = function (ball) {
+    GameLogic.prototype.add = function (ball) {
         ball.chosenTag = false;
         this.atoms[ball.id] = ball;
         this.world.addBody(ball);
         this.onAtomAdd(ball);
     };
-    p.choose = function (ball) {
+    GameLogic.prototype.choose = function (ball) {
         if (!ball.chosenTag && this.checker.check(this.atomChosen, ball, SpritePhysic.factor)) {
             this.chosenCount++;
             this.atomChosen.push(ball);
@@ -38,7 +40,7 @@ var GameLogic = (function () {
             ball.chosenTag = true;
         }
     };
-    p.freeChosen = function () {
+    GameLogic.prototype.freeChosen = function () {
         for (var i = 0; i < this.atomChosen.length; i++) {
             var ball = this.atomChosen[i];
             if (ball && ball.chosenTag) {
@@ -48,7 +50,7 @@ var GameLogic = (function () {
         }
         this.atomChosen = new Array();
     };
-    p.destroyAtoms = function () {
+    GameLogic.prototype.destroyAtoms = function () {
         for (var i = 0; i < this.atomChosen.length; i++) {
             var ball = this.atomChosen[i];
             var id = ball.id;
@@ -60,19 +62,19 @@ var GameLogic = (function () {
         }
         this.atomChosen = new Array();
     };
-    p.getWorld = function () {
+    GameLogic.prototype.getWorld = function () {
         return this.world;
     };
-    p.getAllAtomBall = function () {
+    GameLogic.prototype.getAllAtomBall = function () {
         return this.atoms;
     };
-    p.pause = function () {
+    GameLogic.prototype.pause = function () {
         this.isPause = true;
     };
-    p.resume = function () {
+    GameLogic.prototype.resume = function () {
         this.isPause = false;
     };
-    p.initGround = function () {
+    GameLogic.prototype.initGround = function () {
         var world = this.world;
         world.setGlobalStiffness(1e8);
         ///world.solver.iterations = 20;
@@ -130,4 +132,5 @@ var GameLogic = (function () {
     };
     return GameLogic;
 }());
-egret.registerClass(GameLogic,'GameLogic');
+__reflect(GameLogic.prototype, "GameLogic");
+//# sourceMappingURL=GameLogic.js.map

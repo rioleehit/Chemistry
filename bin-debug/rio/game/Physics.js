@@ -1,10 +1,13 @@
 /**
  * @rio
  */
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
 var Physics = (function () {
     function Physics() {
     }
-    var d = __define,c=Physics,p=c.prototype;
     return Physics;
 }());
-egret.registerClass(Physics,'Physics');
+__reflect(Physics.prototype, "Physics");
+//# sourceMappingURL=Physics.js.map

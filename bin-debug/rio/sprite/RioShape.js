@@ -13,3 +13,4 @@
 //    public static baseShap:egret.Shape;
 //}
 //RioShape.baseShap = new egret.Shape(); 
+//# sourceMappingURL=RioShape.js.map

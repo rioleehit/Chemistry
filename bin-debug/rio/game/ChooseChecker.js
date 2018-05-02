@@ -1,3 +1,6 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
 /**
  *
  * @author
@@ -6,8 +9,7 @@
 var ChooseChecker = (function () {
     function ChooseChecker() {
     }
-    var d = __define,c=ChooseChecker,p=c.prototype;
-    p.check = function (chosen, newAtom, distance) {
+    ChooseChecker.prototype.check = function (chosen, newAtom, distance) {
         var isSame = true;
         var pos = newAtom.getPos();
         var isClose = chosen.length == 0;
@@ -19,4 +21,5 @@ var ChooseChecker = (function () {
     };
     return ChooseChecker;
 }());
-egret.registerClass(ChooseChecker,'ChooseChecker');
+__reflect(ChooseChecker.prototype, "ChooseChecker");
+//# sourceMappingURL=ChooseChecker.js.map
