@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="GameMainSkin" width="480" height="800" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*" >
+	<e:Image source="cup_png" left="0" right="0" top="0" bottom="0"/>
+	<ns1:Button  id="btn_start" y="436" skinName="rioSetingButtonSkin" horizontalCenter="0"/>
+</e:Skin>
