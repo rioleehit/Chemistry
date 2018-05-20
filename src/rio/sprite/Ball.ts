@@ -9,13 +9,14 @@ interface BallInfor{
     type:string
 }
 class Ball extends SpritePhysic implements AtomBall{
+    public ballType: string;
     public constructor(info: BallInfor, _img:any) {
         super({
             mass: 1,
             position: [Math.floor(info.posX / SpritePhysic.factor),
                 Math.floor((SpritePhysic.stageHeight - info.posY) / SpritePhysic.factor),],
-            onInit: ()=>{
-                this.ballType = info.type;
+            onInit: (self:Ball)=>{
+                self.ballType = info.type;
 //                var vertices = [];
 //                var size = 2.2;
 //                for(var i = 0,N = 7;i < N;i++) {
@@ -25,7 +26,7 @@ class Ball extends SpritePhysic implements AtomBall{
 //                }
 //                var boxShape = new p2.Convex({ vertices: vertices });
                 var boxShape: p2.Shape = new p2.Circle({ radius: 1 });
-                this.addShape(boxShape);
+                self.addShape(boxShape);
                 //var img = this.createBitmapByName("circle");
                 var img = new egret.Shape();
                 img.graphics.beginFill(0xff0000,1);
@@ -38,7 +39,7 @@ class Ball extends SpritePhysic implements AtomBall{
                 text.text = info.type;     
                 text.anchorOffsetX = Math.ceil(text.width / 2);
                 text.anchorOffsetY = Math.ceil(text.height / 2);
-                this.ballType = info.type;
+                self.ballType = info.type;
                 //this.img.addChild(img);
                 //this.img.addChild(text);
                 var texture = new egret.Bitmap(_img);
@@ -47,9 +48,9 @@ class Ball extends SpritePhysic implements AtomBall{
                 texture.height = radius * 2;
                 texture.anchorOffsetX = radius ; 
                 texture.anchorOffsetY = radius ;
-                this.img.width = radius;
-                this.img.height = radius;
-                this.img.addChild(texture);
+                self.img.width = radius;
+                self.img.height = radius;
+                self.img.addChild(texture);
             }
         });
 	}
@@ -63,5 +64,4 @@ class Ball extends SpritePhysic implements AtomBall{
         var offY: number = y - pos.y;        
         return Math.sqrt(offX * offX + offY * offY);
     }
-    public ballType: string;
 }

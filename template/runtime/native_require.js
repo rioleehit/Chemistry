@@ -9,20 +9,20 @@ var game_file_list = [
 	"libs/modules/physics/physics.js",
 	"promise/bin/promise.js",
 	"bin-debug/rio/sprite/SpritePhysic.js",
-	"bin-debug/LoadingUI.js",
+	"bin-debug/rio/game/ChooseChecker.js",
 	"bin-debug/Main.js",
 	"bin-debug/ThemeAdapter.js",
 	"bin-debug/rio/GameMain.js",
 	"bin-debug/rio/Template.js",
 	"bin-debug/rio/game/Button.js",
-	"bin-debug/rio/game/ChooseChecker.js",
+	"bin-debug/AssetAdapter.js",
 	"bin-debug/rio/game/GameLayer.js",
 	"bin-debug/rio/game/GameLogic.js",
 	"bin-debug/rio/game/Physics.js",
 	"bin-debug/rio/sprite/Ball.js",
 	"bin-debug/rio/sprite/Rectangle.js",
 	"bin-debug/rio/sprite/RioShape.js",
-	"bin-debug/AssetAdapter.js",
+	"bin-debug/LoadingUI.js",
 	//----auto game_file_list end----
 ];
 
