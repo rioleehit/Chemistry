@@ -15,8 +15,8 @@ class Ball extends SpritePhysic implements AtomBall{
             mass: 1,
             position: [Math.floor(info.posX / SpritePhysic.factor),
                 Math.floor((SpritePhysic.stageHeight - info.posY) / SpritePhysic.factor),],
-            onInit: (self:Ball)=>{
-                self.ballType = info.type;
+            onInit: ()=>{
+                this.ballType = info.type;
 //                var vertices = [];
 //                var size = 2.2;
 //                for(var i = 0,N = 7;i < N;i++) {

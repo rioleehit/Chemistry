@@ -23,7 +23,7 @@ var SpritePhysic = (function (_super) {
         _this.img = new egret.Sprite();
         _this.img["update"] = function () { };
         if (options && options.onInit) {
-            options.onInit.call(_this);
+            _this.onInit = options.onInit;
         }
         _this.img.addEventListener(egret.Event.ADDED_TO_STAGE, _this.active, _this);
         _this.img.addEventListener(egret.Event.REMOVED_FROM_STAGE, _this.unactive, _this);
@@ -38,6 +38,7 @@ var SpritePhysic = (function (_super) {
         //        }
     };
     SpritePhysic.prototype.active = function () {
+        this.onInit();
         if (this.img) {
             this.img.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this._onChosen, this);
             this.img.addEventListener(egret.TouchEvent.TOUCH_MOVE, this._onChosen, this);

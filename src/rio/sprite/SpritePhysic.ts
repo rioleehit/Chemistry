@@ -9,11 +9,12 @@ class SpritePhysic extends p2.Body{
         this.img = new egret.Sprite();
         this.img["update"] = ()=>{ };
         if(options && options.onInit){
-            options.onInit.call(this);
+            this.onInit = options.onInit;
         }
         this.img.addEventListener(egret.Event.ADDED_TO_STAGE,this.active,this);
         this.img.addEventListener(egret.Event.REMOVED_FROM_STAGE,this.unactive,this);
-    } 
+    }
+    private onInit: () => any
     public update() {
         this.img.x = (this.position[0] * SpritePhysic.factor);
         this.img.y = (SpritePhysic.stageHeight - this.position[1] * SpritePhysic.factor);
@@ -22,7 +23,8 @@ class SpritePhysic extends p2.Body{
 //            this.img["update"](this);
 //        }
     }
-    public active() {
+    public active() {    
+        this.onInit();    
         if(this.img){
             this.img.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this._onChosen,this);
             this.img.addEventListener(egret.TouchEvent.TOUCH_MOVE,this._onChosen,this);
