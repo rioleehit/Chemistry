@@ -14,7 +14,7 @@ class SpritePhysic extends p2.Body{
         this.img.addEventListener(egret.Event.ADDED_TO_STAGE,this.active,this);
         this.img.addEventListener(egret.Event.REMOVED_FROM_STAGE,this.unactive,this);
     }
-    private onInit: () => any
+    private onInit: (self:SpritePhysic) => any
     public update() {
         this.img.x = (this.position[0] * SpritePhysic.factor);
         this.img.y = (SpritePhysic.stageHeight - this.position[1] * SpritePhysic.factor);
@@ -24,7 +24,7 @@ class SpritePhysic extends p2.Body{
 //        }
     }
     public active() {    
-        this.onInit();    
+        this.onInit(this);    
         if(this.img){
             this.img.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this._onChosen,this);
             this.img.addEventListener(egret.TouchEvent.TOUCH_MOVE,this._onChosen,this);
