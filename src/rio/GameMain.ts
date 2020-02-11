@@ -62,8 +62,8 @@ class GameMain extends eui.Panel{
             var arr = RES.getRes('level_json');
             //console.log(arr.data.length);
             this.stageInfo.lv = "lv1";
-            this.stageInfo.lvData = arr["lv1"];
-            var _persent = arr["lv1_概率"];
+            this.stageInfo.lvData = arr["lvTest"];
+            var _persent = arr["lvTest_概率"];
             this.stageInfo.persent = new Array(500);
             var start: number = 0;
             var end: number = 0;

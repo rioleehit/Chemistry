@@ -4,19 +4,28 @@
  *
  */
 interface BallInfor{
-    posX: number,
-    posY: number,
-    type:string
+    pos?:
+    {
+        X?: number,
+        Y?: number,
+    },
+    R:number,//半径
+    Q:number,//质量
+    type:string,
+    color:number,//颜色
+    alpha?:number,//透明度
+    img?:any//图片素材
 }
 class Ball extends SpritePhysic implements AtomBall{
     public ballType: string;
-    public constructor(info: BallInfor, _img:any) {
+    public constructor(info: BallInfor) {
         super({
             mass: 1,
-            position: [Math.floor(info.posX / SpritePhysic.factor),
-                Math.floor((SpritePhysic.stageHeight - info.posY) / SpritePhysic.factor),],
+            position: [Math.floor(info.pos.X / SpritePhysic.factor),
+                Math.floor((SpritePhysic.stageHeight - info.pos.Y) / SpritePhysic.factor),],
             onInit: (self:Ball)=>{
-                 self.ballType = info.type;
+                self.mass = info.Q;
+                self.ballType = info.type;
 //                var vertices = [];
 //                var size = 2.2;
 //                for(var i = 0,N = 7;i < N;i++) {
@@ -25,24 +34,28 @@ class Ball extends SpritePhysic implements AtomBall{
 //                    vertices.push(vertex);
 //                }
 //                var boxShape = new p2.Convex({ vertices: vertices });
-                var boxShape: p2.Shape = new p2.Circle({ radius: 1 });
+                var boxShape: p2.Shape = new p2.Circle({ radius: info.R });
                 self.addShape(boxShape);
                 //var img = this.createBitmapByName("circle");
                 var img = new egret.Shape();
-                img.graphics.beginFill(0xff0000,1);
-                img.graphics.drawCircle(0,0,SpritePhysic.factor);
+                img.graphics.beginFill(info.color,info.alpha!=null?info.alpha:1);
+                img.graphics.drawCircle(0,0,SpritePhysic.factor * info.R);
                 img.graphics.endFill();
                 img.touchEnabled = true;
-                var radius = (<p2.Circle>boxShape).radius * SpritePhysic.factor;
-                //var radius = 1 * SpritePhysic.factor;
                 var text = new egret.TextField();
+                text.textColor = 0xffffff - info.color;
                 text.text = info.type;     
                 text.anchorOffsetX = Math.ceil(text.width / 2);
                 text.anchorOffsetY = Math.ceil(text.height / 2);
                 self.ballType = info.type;
-                //this.img.addChild(img);
-                //this.img.addChild(text);
-                var texture = new egret.Bitmap(_img);
+                if(info.img==null){
+                    this.img.addChild(img);
+                    this.img.addChild(text);
+                    return;
+                }
+                var radius = (<p2.Circle>boxShape).radius * SpritePhysic.factor;
+                //var radius = 1 * SpritePhysic.factor;
+                var texture = new egret.Bitmap(info.img);
                 texture.touchEnabled = true;
                 texture.width = radius*2;
                 texture.height = radius * 2;
@@ -50,7 +63,7 @@ class Ball extends SpritePhysic implements AtomBall{
                 texture.anchorOffsetY = radius ;
                 self.img.width = radius;
                 self.img.height = radius;
-                self.img.addChild(texture);
+                //self.img.addChild(texture);
             }
         });
 	}
